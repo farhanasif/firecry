@@ -15,10 +15,36 @@ const firebaseConfig = {
     measurementId: "G-FKYVMN7L9M"
 }
 
-export default class Firebase {
+class Firebase {
     constructor(){
         firebase.initializeApp(firebaseConfig);
         this.auth = firebase.auth;
         this.db = firebase.firestore();
     }
+
+    login = async(email, password) => {
+        const user = await firebase.auth().signInWithEmailAndPassword(email, password).catch(err => {
+            console.log(err);
+            return(err);
+        })
+
+        return user;
+    }
+
+    logout = async(email, password) => {
+        const logout = await firebase.auth().signOut().catch(err => {
+            console.log(err);
+            return(err);
+        })
+
+        return logout;
+    }
+
+    getUserState = async() => {
+        return new Promise(resolve => {
+            firebase.auth().onAuthStateChanged(resolve);
+        })
+    }
 }
+
+export default new Firebase;

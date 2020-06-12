@@ -1,46 +1,74 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, Button, TouchableWithoutFeedback } from 'react-native';
+import firebase from '../firebase/config';
 import { AuthContext } from '../contexts/AuthContext';
 
 const HomeScreen = ({ navigation }) => {
-    //const { isAuthenticated, toggleAuth } = useContext(AuthContext);
-    const { isAuthenticated, dispatch } = useContext(AuthContext);
+
+    const [userState, setUserState] = useState(null);
+    const [userEmail, setUserEmail] = useState('');
+    const { state, dispatch } = useContext(AuthContext);
 
     const handleToggle = () => {
-        dispatch({ type: 'TOGGLE_AUTH', isAuthenticated});
+        //dispatch({ type: 'TOGGLE_AUTH', isAuthenticated});
+        console.log('handle')
     }
 
-    const handleLogin = () => {
-        console.log(isAuthenticated)
+    const handleLogin = async() => {
+        let response = await firebase.login('grab@gmail.com','11223344');
+        if(response.message){
+            console.log(response.message)
+        }
+        else{
+            return dispatch({type: 'LOGIN', payload: response.user})
+        }
+    }
+
+    useEffect(() => {
+        firebase.getUserState().then(user => {
+            if(user){
+                setUserEmail(user.email);
+                setUserState(user);
+            }
+        })
+    })
+
+    const logout = () => {
+        firebase.logout();
+        setUserState(null);
+        return dispatch({
+            type: 'LOGOUT',
+            payload: {}
+        })
+    }
+
+    let Buttons;
+
+    if(userState !=null){
+        Buttons = (
+            <Button
+                title="Logout"
+                onPress={logout}
+            />
+        )
+    }
+    else{
+        Buttons = (
+            <Button
+                title="Login"
+                onPress={handleLogin}
+            />
+        )
     }
 
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Home Screen here</Text>
-        <TouchableWithoutFeedback
-            onPress={handleToggle}
-        >
-            <View>
-                <Text style={{ padding: 20 }}>{ isAuthenticated ? 'Logged in' : 'Logged out' }</Text>
-            </View>
-        </TouchableWithoutFeedback>
+        <View>
+            <Text style={{ padding: 20 }}>{userState ? userEmail: 'No user'}</Text>
+        </View>
         
-        <TouchableWithoutFeedback
-            onPress={handleLogin}
-        >
-            <View>
-                <Text style={{ 
-                    marginBottom: 30,
-                    width: 260,
-                    height: 40,
-                    alignItems: 'center',
-                    textAlign: 'center',
-                    fontWeight: "bold",
-                    backgroundColor: 'yellow' }}>
-                { isAuthenticated ? 'Try Logged out' : 'Try Logged in' }
-                </Text>
-            </View>
-        </TouchableWithoutFeedback>
+        {Buttons}
 
         <Button
             title="Go to Details"

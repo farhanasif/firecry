@@ -6,6 +6,12 @@ export const AuthReducer = (state = [], action) => {
       case 'LOAD':
         console.log('DISPATCH LOAD : '+action.data)
         return state;
+      case 'SIGNIN':
+        return {...state, user: action.paylad}
+      case 'LOGIN':
+        return {...state, user: action.paylad}
+      case 'LOGOUT':
+        return {...state, user: action.paylad}
       default:
         return state;
     }
