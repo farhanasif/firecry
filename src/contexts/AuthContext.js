@@ -20,30 +20,30 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-// class AuthContextProvider extends Component {
-//   state = {
-//     isAuthenticated: false
-//   }
-//   toggleAuth = () => {
-//     this.setState({ isAuthenticated: !this.state.isAuthenticated });
-//   }
-  
-//   render() { 
-//     return (
-//       <AuthContext.Provider value={{...this.state, toggleAuth: this.toggleAuth}}>
-//         {this.props.children}
-//       </AuthContext.Provider>
-//     );
-//   }
-// }
-
 const AuthContextProvider = (props) => {
     const [isAuthenticated, dispatch] = useReducer(AuthReducer, false);
+    //const [user, dispatch] = useReducer(User)
 
     useEffect(() => {
         console.log('req-init')
         const data = false;
-        dispatch({type: "INIT", data});
+        dispatch({type: "LOAD", data});
+        async function fetchData(){
+            firebase.auth().onAuthStateChanged((user) => {
+                console.log(user)
+                if (user != null) {
+                    const data = true;
+                    dispatch({type: "LOAD", data});
+                }
+                else{
+                    const data = false;
+                    dispatch({type: "LOAD", data});
+                }
+            
+            // Do other things
+            });
+        }
+        fetchData();
     }, []);
 
     return (
