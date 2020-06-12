@@ -3,13 +3,18 @@ import { View, Text, Button, TouchableWithoutFeedback } from 'react-native';
 import { AuthContext } from '../contexts/AuthContext';
 
 const HomeScreen = ({ navigation }) => {
-    const { isAuthenticated, toggleAuth } = useContext(AuthContext);
+    //const { isAuthenticated, toggleAuth } = useContext(AuthContext);
+    const { isAuthenticated, dispatch } = useContext(AuthContext);
+
+    const handleToggle = () => {
+        dispatch({ type: 'TOGGLE_AUTH', isAuthenticated});
+    }
 
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Home Screen here</Text>
         <TouchableWithoutFeedback
-            onPress={() => toggleAuth()}
+            onPress={handleToggle}
         >
             <View>
                 <Text style={{ padding: 20 }}>{ isAuthenticated ? 'Logged in' : 'Logged out' }</Text>

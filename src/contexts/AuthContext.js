@@ -1,4 +1,6 @@
-import React, { Component, createContext, useEffect, useState } from 'react';
+import React, { Component, createContext, useEffect, useReducer, useState } from 'react';
+import { AuthReducer } from '../stores/reducers/AuthReducer';
+
 import * as firebase from 'firebase'
 import 'firebase/firestore';
 
@@ -36,14 +38,16 @@ firebase.initializeApp(firebaseConfig);
 // }
 
 const AuthContextProvider = (props) => {
-    const [isAuthenticated, toggleAuth] = useState(false);
+    const [isAuthenticated, dispatch] = useReducer(AuthReducer, false);
 
-    toggleAuth = () => {
-        isAuthenticated = !isAuthenticated
-    }
+    useEffect(() => {
+        console.log('req-init')
+        const data = false;
+        dispatch({type: "INIT", data});
+    }, []);
 
     return (
-        <AuthContext.Provider value={{isAuthenticated, toggleAuth}}>
+        <AuthContext.Provider value={{ isAuthenticated, dispatch }}>
           {props.children}
         </AuthContext.Provider>
     );
