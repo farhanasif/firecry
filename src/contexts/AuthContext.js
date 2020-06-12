@@ -22,7 +22,7 @@ firebase.initializeApp(firebaseConfig);
 
 const AuthContextProvider = (props) => {
     const [isAuthenticated, dispatch] = useReducer(AuthReducer, false);
-    //const [user, dispatch] = useReducer(User)
+    //const [user, dispatch] = useReducer(UserReducer, false);
 
     useEffect(() => {
         console.log('req-init')
