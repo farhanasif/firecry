@@ -45,6 +45,15 @@ class Firebase {
             firebase.auth().onAuthStateChanged(resolve);
         })
     }
+
+    sendVerifyMail = async() => {
+        const mail = await firebase.auth().signOut().catch(err => {
+            console.log(err);
+            return(err);
+        })
+
+        return mail;
+    }
 }
 
 export default new Firebase;
