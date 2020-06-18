@@ -46,6 +46,17 @@ class Firebase {
         })
     }
 
+    checkUserEmailAndVerify = (email) => {
+        const response = firebase.auth().sendPasswordResetEmail(email).then(function() {
+            return 'success';
+          }).catch(function(err) {
+            return(err)
+          });
+
+        return response;
+          
+    }
+
     sendVerifyMail = async() => {
         const mail = await firebase.auth().signOut().catch(err => {
             console.log(err);

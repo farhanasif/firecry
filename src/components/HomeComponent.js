@@ -15,7 +15,7 @@ const HomeScreen = ({ navigation }) => {
     }
 
     const handleLogin = async() => {
-        let response = await firebase.login('grab@gmail.com','11223344');
+        let response = await firebase.login('f.asif2010@gmail.com','123123123');
         if(response.message){
             console.log(response.message)
         }
