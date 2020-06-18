@@ -71,7 +71,7 @@ const HomeScreen = ({ navigation }) => {
         {Buttons}
 
         <Button
-            title="Go to Details"
+            title="Reset Password"
             onPress={() => navigation.navigate('Details')}
         />
       </View>
