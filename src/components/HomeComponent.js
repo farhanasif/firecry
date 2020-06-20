@@ -74,6 +74,11 @@ const HomeScreen = ({ navigation }) => {
             title="Reset Password"
             onPress={() => navigation.navigate('Details')}
         />
+
+        <Button
+            title="Play"
+            onPress={() => navigation.navigate('Play')}
+        />
       </View>
     );
 }
