@@ -3,18 +3,18 @@ import { View, Text, Button, TextInput } from 'react-native';
 
 export default function PlayScreen({navigation}) {
 
-    const [timer, setTimer] = useState(false);
     const [btntitle, setBtntitle] = useState('stop');
-    const [count, setCount] = useState(60);
+    const [count, setCount] = useState(6);
 
     useEffect(() => {
         const interval = setInterval(() => {
             setCount(count => count - 1);
-            if(count === 0){
-                clearInterval(interval);
-            }
         }, 1000);
-    
+        
+        if(count === 0){
+            clearInterval(interval);
+        }
+
         return () => {
             clearInterval(interval);
         };
