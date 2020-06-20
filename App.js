@@ -20,7 +20,13 @@ function App() {
         <Stack.Navigator>
             <Stack.Screen name="Home" component={HomeComponent} />
             <Stack.Screen name="Details" component={DetailsComponent} />
-            <Stack.Screen name="Play" component={PlayComponent} />
+            <Stack.Screen 
+              name="Play" 
+              component={PlayComponent} 
+              options={{
+                headerShown: false
+              }}
+            />
         </Stack.Navigator>
       </AuthContextProvider>
     </NavigationContainer>
