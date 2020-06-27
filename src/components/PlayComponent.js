@@ -1,11 +1,15 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component, useState, useEffect, useContext } from 'react';
 import { View, Text, Button, TextInput } from 'react-native';
+
+import { QuizContext } from '../contexts/QuizContext';
 
 export default function PlayScreen({navigation}) {
 
     const [btntitle, setBtntitle] = useState('stop');
     const [count, setCount] = useState(6);
     const [loop, setLoop] = useState();
+    
+    const { questions } = useContext(QuizContext);
     
 
     useEffect(() => {
