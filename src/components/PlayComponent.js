@@ -11,10 +11,13 @@ export default function PlayScreen({navigation}) {
     useEffect(() => {
         if(count == 6){
             timefunc()
+            console.log('started ', count)
         }
         else if (count < 1){
             console.log('clear interval')
             clearInterval(loop);
+            //starting again
+            setCount(6)
         }
         else{
             console.log('value change effect:',count)
