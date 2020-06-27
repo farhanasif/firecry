@@ -62,7 +62,7 @@ export default function PlayScreen({navigation}) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text style={{ marginVertical:10, fontSize: 24, fontWeight: '500', color: 'red'}}>Quiz 1 ({questionCounter}/{questions.length})</Text>
-        <Text style={{ marginVertical:10, fontSize: 20, fontWeight: '500', color: 'green'}}>Time remaining : {count}s </Text>
+        <Text style={{ marginVertical:10, fontSize: 20, fontWeight: '500', color: 'green'}}>সময় বাকি : {count}s </Text>
         <Text style={{marginVertical: 10, fontSize: 18, fontWeight: '400', color: 'blue'}}>Q{questionCounter} . {questions.find(x => x.id === questionCounter).question}</Text>
         
         <Text style={{marginVertical: 5, fontSize: 18, fontWeight: '400', color: 'blue'}} >A. {questions.find(x => x.id === questionCounter).a}</Text>

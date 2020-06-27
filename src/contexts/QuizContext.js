@@ -14,9 +14,9 @@ const QuizContextProvider = (props) => {
     const data = [
         {
             "id":1,
-            "question":"Who is the winner of BPL 2019/2020?",
-            "a":"Liverpool",
-            "b":"Manchester City",
+            "question":"আমার সোনার বাংলা - গানটির রচয়িতা কে?",
+            "a":"রবীন্দ্রনাথ ঠাকুর",
+            "b":"কাজী নজরুল ইসলাম",
             "answer":"a"
         },
         {
