@@ -6,25 +6,27 @@ export default function PlayScreen({navigation}) {
     const [btntitle, setBtntitle] = useState('stop');
     const [count, setCount] = useState(6);
     const [loop, setLoop] = useState();
+    
 
     useEffect(() => {
-
-        timefunc()
-
-        return () => {
+        if(count == 6){
+            timefunc()
+        }
+        else if (count < 1){
+            console.log('clear interval')
             clearInterval(loop);
-        };
-    },[]);
+        }
+        else{
+            console.log('value change effect:',count)
+        }
+    },[count]);
 
     const timefunc = () => {
         setLoop(setInterval(() => {
             setCount(count => count - 1)
-            if(count === 0){
-                clearInterval(loop);
-            }
-            console.log(count)
         }, 1000))
     }
+
 
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
