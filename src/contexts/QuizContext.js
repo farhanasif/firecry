@@ -26,6 +26,34 @@ const QuizContextProvider = (props) => {
             "b":"France",
             "answer":"b"
         },
+        {
+            "id":3,
+            "question":"Capital of Bangladesh?",
+            "a":"Sylhet",
+            "b":"Dhaka",
+            "answer":"b"
+        },
+        {
+            "id":4,
+            "question":"Capital of India",
+            "a":"Chennai",
+            "b":"Mumbai",
+            "answer":"b"
+        },
+        {
+            "id":5,
+            "question":"Who is the current Prime Minister of Bangladesh?",
+            "a":"Khaleda",
+            "b":"Hasina",
+            "answer":"b"
+        },
+        {
+            "id":6,
+            "question":"Father of the nation?",
+            "a":"Tajuddin",
+            "b":"Sheikh Mujib",
+            "answer":"b"
+        },
     ];
 
     dispatch({type: "INIT", data});
